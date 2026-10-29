@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between flex-wrap"><h2 class="fw-bold">Learning Adventure</h2><div><span class="badge badge-on fs-6"><i class="fa-solid fa-bolt"></i> <span id="xp">{{ s.xp }}</span> XP</span></div></div>
+<div class="mb-3">{% for n,on in badges.items() %}<span class="badge {{ 'badge-on' if on else 'badge-off' }} me-1"><i class="fa-solid fa-{{ 'medal' if on else 'lock' }}"></i> {{ n }}</span>{% endfor %}</div>
+<div class="map"><div class="lvl"><div class="node completed"><i class="fa-solid fa-flag"></i></div><b>START</b></div>
+{% for l in levels %}<div class="lvl"><div class="node {{ l.status }}">
+{% if l.status=='completed' %}<i class="fa-solid fa-check"></i>{% elif l.status=='locked' %}<i class="fa-solid fa-lock"></i>{% else %}{{ l.n }}{% endif %}</div>
+<div class="info"><div class="small text-muted">Level {{ l.n }}</div><div class="fw-bold">{{ l.course.title }}</div>
+<div class="progress my-1"><div class="progress-bar" style="width:{{ l.pct }}%"></div></div>
+<div class="small">{{ l.pct }}% · +{{ l.xp }} XP · {{ l.status|capitalize }}</div>
+{% if l.status in ('available','current') %}<button class="btn btn-grad btn-sm mt-1" data-start="{{ l.course.id }}">Continue +25%</button>{% endif %}</div></div>{% endfor %}
+<div class="lvl"><div class="node locked"><i class="fa-solid fa-trophy"></i></div><b>Final Challenge</b></div></div>
+{% endblock %}

@@ -1,0 +1,23 @@
+:root{--navy:#14123a;--violet:#6c4cf1;--blue:#3b82f6;--pink:#ff4f9a;--green:#22c55e;--gold:#f5b301;--bg:#f5f4fb;--ink:#1d1b3a}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Segoe UI",system-ui,sans-serif}
+.navbar{background:linear-gradient(90deg,var(--navy),#2a1b6b)}
+.navbar .nav-link{color:#cfcdf5}.navbar .nav-link.active,.navbar .nav-link:hover{color:#fff}
+.brand-ai{background:var(--pink);border-radius:8px;padding:0 .4rem;font-size:.75rem;margin-left:.4rem}
+.hero{background:linear-gradient(135deg,var(--navy),var(--violet) 70%,var(--pink));color:#fff;border-radius:24px;padding:3rem 2rem}
+.card-x{background:#fff;border:0;border-radius:18px;box-shadow:0 6px 24px rgba(40,30,120,.08);padding:1.25rem}
+.stat b{font-size:2rem;color:var(--violet)}
+.match{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border-radius:14px;padding:.35rem .8rem;font-weight:800}
+.btn-grad{background:linear-gradient(90deg,var(--violet),var(--pink));color:#fff;border:0}.btn-grad:hover{color:#fff;opacity:.9}
+.chip{border:1px solid #d9d5ff;border-radius:99px;padding:.2rem .7rem;font-size:.8rem;background:#f1eeff;margin:0 .2rem .3rem 0;display:inline-block}
+.map{position:relative;max-width:520px;margin:auto;padding:1rem 0}
+.map:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:6px dashed #cfc8ff;transform:translateX(-50%)}
+.lvl{position:relative;display:flex;align-items:center;gap:1rem;margin:2rem 0}
+.lvl:nth-child(odd){margin-left:6%}.lvl:nth-child(even){margin-left:34%}
+.node{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:1.6rem;flex:none;border:5px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.node.completed{background:var(--green)}.node.available{background:linear-gradient(135deg,var(--blue),var(--violet))}
+.node.current{background:linear-gradient(135deg,var(--pink),var(--gold));box-shadow:0 0 0 6px rgba(255,79,154,.25),0 0 28px rgba(255,79,154,.6)}
+.node.locked{background:#b9b7c9}
+.lvl .info{background:#fff;border-radius:14px;padding:.6rem .9rem;box-shadow:0 4px 14px rgba(0,0,0,.08);min-width:170px}
+@media(max-width:576px){.lvl:nth-child(n){margin-left:0}.map:before{left:39px}.hero{padding:2rem 1.2rem}}
+.progress{height:.55rem}.progress-bar{background:var(--green)}
+.badge-on{background:var(--gold);color:#3a2d00}.badge-off{background:#e4e2ee;color:#8c8aa3}

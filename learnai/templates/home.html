@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero mb-4"><h1 class="fw-bold">AI-Based Personalized Learning<br>Recommendation System</h1>
+<p class="lead">Discover personalized courses, learning paths and resources based on your skills, interests and goals.</p>
+<p class="fst-italic">Learn Smarter. Learn Your Way.</p>
+<a class="btn btn-light btn-lg me-2" href="{{ url_for('pages.profile') }}">Get Started</a>
+<a class="btn btn-outline-light btn-lg" href="{{ url_for('pages.recommendations') }}">Explore Recommendations</a></section>
+<div class="row g-3 mb-4">{% for label,v in [('Courses in Catalog',stats.courses),('Student Profiles',stats.students),('Logged Interactions',stats.interactions),('Recommendations Generated',stats.recommendations)] %}
+<div class="col-6 col-lg-3"><div class="card-x stat text-center"><b>{{ '{:,}'.format(v) }}</b><div class="text-muted">{{ label }}</div></div></div>{% endfor %}</div>
+<h4 class="fw-bold mb-3">How it works</h4><div class="row g-3 mb-4">
+{% for t,ic in [('Create Profile','user'),('Take Assessment','clipboard-check'),('Get Recommendations','wand-magic-sparkles'),('Follow Learning Path','route'),('Track Progress','chart-line')] %}
+<div class="col-6 col-lg"><div class="card-x text-center h-100"><i class="fa-solid fa-{{ic}} fs-3 text-primary mb-2"></i><div class="fw-semibold">{{ loop.index }}. {{ t }}</div></div></div>{% endfor %}</div>
+<div class="row g-3">{% for t,d,ic in [('AI Recommendations','TF-IDF and cosine similarity rank every course for you.','brain'),('Skill Assessment','Know where you stand, skill by skill.','clipboard-check'),('Personalized Learning Path','A level-by-level adventure toward your goal.','route'),('Progress Tracking','Charts built from your real activity.','chart-pie'),('Gamification','XP, streaks and badges keep you going.','trophy'),('Performance Reports','A PDF summary of your progress.','file-pdf')] %}
+<div class="col-md-4"><div class="card-x h-100"><i class="fa-solid fa-{{ic}} text-danger mb-2"></i><h6 class="fw-bold">{{ t }}</h6><p class="mb-0 text-muted">{{ d }}</p></div></div>{% endfor %}</div>
+{% endblock %}

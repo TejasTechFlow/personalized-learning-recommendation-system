@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block content %}
+<h2 class="fw-bold">Your Personalized Recommendations</h2>
+{% if focus %}<div class="alert alert-info"><i class="fa-solid fa-bullseye"></i> {{ focus }}</div>{% endif %}
+{% for r in recs %}{% set c=r.course %}
+<div class="card-x mb-3 {{ 'border border-2 border-warning' if loop.first }}">
+{% if loop.first %}<span class="badge badge-on mb-2"><i class="fa-solid fa-star"></i> Top match</span>{% endif %}
+<div class="d-flex justify-content-between align-items-start gap-2"><div>
+<h5 class="fw-bold mb-1">{{ c.title }}</h5>
+<span class="chip">{{ c.category }}</span><span class="chip">{{ c.difficulty }}</span><span class="chip">{{ c.duration_hours }} hrs</span><span class="chip">★ {{ c.rating }}</span></div>
+<div class="match">{{ r.score|round|int }}% Match</div></div>
+<p class="mt-2 mb-2">{{ c.description }}</p>
+<div class="mb-2">{% for sk in c.skills.split(',') %}<span class="chip">{{ sk }}</span>{% endfor %}</div>
+<div class="d-flex flex-wrap gap-2">
+<button class="btn btn-grad btn-sm" data-start="{{ c.id }}">Start Learning</button>
+<button class="btn btn-outline-primary btn-sm" data-bs-toggle="collapse" data-bs-target="#w{{ c.id }}">Why this course?</button>
+<button class="btn btn-outline-secondary btn-sm" data-addpath="{{ c.id }}" {{ 'disabled' if c.id in in_path }}>{{ 'In learning path' if c.id in in_path else 'Add to Learning Path' }}</button></div>
+<div class="collapse mt-3" id="w{{ c.id }}"><div class="row"><div class="col-md-6">
+{% for reason in r.reasons %}<div>✓ {{ reason }}</div>{% endfor %}</div>
+<div class="col-md-6">{% for k,v in r.breakdown.items() %}<div class="small text-capitalize">{{ k }} <span class="float-end">{{ v }}%</span></div><div class="progress mb-1"><div class="progress-bar" style="width:{{ v }}%"></div></div>{% endfor %}</div></div>
+<hr><a href="{{ c.youtube_url }}" target="_blank" rel="noopener" class="me-3"><i class="fa-brands fa-youtube text-danger"></i> YouTube</a>
+<a href="{{ c.resource_url }}" target="_blank" rel="noopener" class="me-3"><i class="fa-solid fa-book"></i> Documentation</a>
+<a href="{{ c.practice_url }}" target="_blank" rel="noopener"><i class="fa-solid fa-code"></i> Practice</a>
+<div class="mt-2 small">Rate: {% for n in range(1,6) %}<a href="#" class="text-warning rate" data-cid="{{ c.id }}" data-r="{{ n }}">★</a>{% endfor %}</div></div></div>
+{% endfor %}{% endblock %}

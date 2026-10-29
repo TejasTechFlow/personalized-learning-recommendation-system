@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<h2 class="fw-bold mb-3">Progress dashboard</h2>
+<div class="row g-3 mb-3">
+{% for label,val in [('Current streak','🔥 %d days'|format(cur)),('Longest streak','%d days'|format(longest)),('Last active',last or '–'),('Total XP',s.xp)] %}
+<div class="col-6 col-lg-3"><div class="card-x stat text-center"><b>{{ val }}</b><div class="text-muted">{{ label }}</div></div></div>{% endfor %}</div>
+<div class="row g-3">
+<div class="col-lg-4"><div class="card-x"><h6>Course completion</h6><canvas id="c1"></canvas></div></div>
+<div class="col-lg-8"><div class="card-x"><h6>Weekly learning hours</h6><canvas id="c2"></canvas></div></div>
+<div class="col-lg-8"><div class="card-x"><h6>Skill progress</h6><canvas id="c3"></canvas></div></div>
+<div class="col-lg-4"><div class="card-x text-center"><h6>Learning goal progress</h6><b class="display-5 text-success" id="overall">0%</b><div class="text-muted">{{ s.learning_goal }}</div><div id="hrs" class="small mt-2"></div></div></div></div>
+{% endblock %}{% block scripts %}<script src="{{ url_for('static',filename='js/progress.js') }}"></script>{% endblock %}
